@@ -11,13 +11,24 @@ class WallServiceTest {
     @Test
     fun add() {
         val post = Post(
-            ownerId = 2,
+            ownerId = 1,
+            fromId = 1,
+            createdBy = 1,
+            date = 4325,
             text = "21 июня самый длинный световой день",
+            replyOwnerId = 1,
             comments = Comments(canClose = false, canOpen = false),
+            copyright = Copyright(1,"www.kkk.ru","name","type"),
             likes = Likes(userLikes = true),
             reposts = Reposts(count = 1),
+            views = Views(0),
             postType = "copy",
-            canPin = false
+            postSource = PostSource("vk","android","profileActivity","URL"),
+            geo = null,
+            signerId = null,
+            copyHistory = null,
+            canPin = false,
+            donut = null
         )
         val service = WallService
         service.add(post)
@@ -29,35 +40,68 @@ class WallServiceTest {
         val service = WallService
         service.add(
             Post(
-                ownerId = 2,
+                ownerId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 4325,
                 text = "21 июня самый длинный световой день",
+                replyOwnerId = 1,
                 comments = Comments(canClose = false, canOpen = false),
+                copyright = Copyright(1,"www.kkk.ru","name","type"),
                 likes = Likes(userLikes = true),
                 reposts = Reposts(count = 1),
+                views = Views(0),
                 postType = "copy",
-                canPin = false
+                postSource = PostSource("vk","android","profileActivity","URL"),
+                geo = null,
+                signerId = null,
+                copyHistory = null,
+                canPin = false,
+                donut = null
             )
         )
         service.add(
             Post(
-                ownerId = 2,
+                ownerId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 4325,
                 text = "21 июня самый длинный световой день",
+                replyOwnerId = 1,
                 comments = Comments(canClose = false, canOpen = false),
+                copyright = Copyright(1,"www.kkk.ru","name","type"),
                 likes = Likes(userLikes = true),
                 reposts = Reposts(count = 1),
+                views = Views(0),
                 postType = "copy",
-                canPin = false
+                postSource = PostSource("vk","android","profileActivity","URL"),
+                geo = null,
+                signerId = null,
+                copyHistory = null,
+                canPin = false,
+                donut = null
             )
         )
         val postUpdate = Post(
             id = 2,
-            ownerId = 2,
+            ownerId = 1,
+            fromId = 1,
+            createdBy = 1,
+            date = 4325,
             text = "22 июня самый длинный световой день",
+            replyOwnerId = 1,
             comments = Comments(canClose = false, canOpen = false),
+            copyright = Copyright(1,"www.kkk.ru","name","type"),
             likes = Likes(userLikes = true),
             reposts = Reposts(count = 1),
+            views = Views(0),
             postType = "copy",
-            canPin = false
+            postSource = PostSource("vk","android","profileActivity","URL"),
+            geo = null,
+            signerId = null,
+            copyHistory = null,
+            canPin = false,
+            donut = null
         )
 
         val result = service.update(postUpdate)
@@ -69,35 +113,68 @@ class WallServiceTest {
         val service = WallService
         service.add(
             Post(
-                ownerId = 2,
+                ownerId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 4325,
                 text = "21 июня самый длинный световой день",
+                replyOwnerId = 1,
                 comments = Comments(canClose = false, canOpen = false),
+                copyright = Copyright(1,"www.kkk.ru","name","type"),
                 likes = Likes(userLikes = true),
                 reposts = Reposts(count = 1),
+                views = Views(0),
                 postType = "copy",
-                canPin = false
+                postSource = PostSource("vk","android","profileActivity","URL"),
+                geo = null,
+                signerId = null,
+                copyHistory = null,
+                canPin = false,
+                donut = null
             )
         )
         service.add(
             Post(
-                ownerId = 2,
+                ownerId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 4325,
                 text = "21 июня самый длинный световой день",
+                replyOwnerId = 1,
                 comments = Comments(canClose = false, canOpen = false),
+                copyright = Copyright(1,"www.kkk.ru","name","type"),
                 likes = Likes(userLikes = true),
                 reposts = Reposts(count = 1),
+                views = Views(0),
                 postType = "copy",
-                canPin = false
+                postSource = PostSource("vk","android","profileActivity","URL"),
+                geo = null,
+                signerId = null,
+                copyHistory = null,
+                canPin = false,
+                donut = null
             )
         )
         val postUpdate = Post(
             id = 25,
-            ownerId = 2,
-            text = "22 июня самый длинный световой день",
+            ownerId = 1,
+            fromId = 1,
+            createdBy = 1,
+            date = 4325,
+            text = "21 июня самый длинный световой день",
+            replyOwnerId = 1,
             comments = Comments(canClose = false, canOpen = false),
+            copyright = Copyright(1,"www.kkk.ru","name","type"),
             likes = Likes(userLikes = true),
             reposts = Reposts(count = 1),
+            views = Views(0),
             postType = "copy",
-            canPin = false
+            postSource = PostSource("vk","android","profileActivity","URL"),
+            geo = null,
+            signerId = null,
+            copyHistory = null,
+            canPin = false,
+            donut = null
         )
 
         val result = service.update(postUpdate)
