@@ -1,7 +1,7 @@
 import java.util.*
 
 data class Post(
-    val id: Int = 0,
+    var id: Int = 0,
     val ownerId: Int,
     val fromId: Int,
     val createdBy: Int,
@@ -36,6 +36,11 @@ data class Comments(
     val groupsCanPost: Boolean = true,
     val canClose: Boolean = true,
     val canOpen: Boolean = true
+)
+data class Comment(
+    val id:Int,
+    val fromId:Int,
+    val text:String
 )
 
 data class Copyright(
