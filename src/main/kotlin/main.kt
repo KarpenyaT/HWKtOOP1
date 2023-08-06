@@ -1,68 +1,89 @@
 fun main() {
     val post = Post(
-        ownerId = 2,
+        ownerId = 1,
+        fromId = 1,
+        createdBy = 1,
+        date = 4325,
         text = "21 июня самый длинный световой день",
+        replyOwnerId = 1,
         comments = Comments(canClose = false, canOpen = false),
+        copyright = Copyright(1, "www.kkk.ru", "name", "type"),
         likes = Likes(userLikes = true),
         reposts = Reposts(count = 1),
+        views = Views(0),
         postType = "copy",
-        canPin = false
+        postSource = PostSource("vk", "android", "profileActivity", "URL"),
+        attachments= arrayOf(AttachmentAudio(
+            "Audio",
+            Audio(
+                1,
+                1,
+                "author",
+                "title",
+                4,
+                "ljk",
+                1,
+                1,
+                1,
+                7,
+                null,
+                null))),
+        geo = null,
+        signerId = null,
+        copyHistory = null,
+        canPin = false,
+        donut = null
     )
     val post2 = Post(
-        ownerId = 2,
+        ownerId = 1,
+        fromId = 1,
+        createdBy = 1,
+        date = 4325,
         text = "21 июня самый длинный световой день",
+        replyOwnerId = 1,
         comments = Comments(canClose = false, canOpen = false),
+        copyright = Copyright(1, "www.kkk.ru", "name", "type"),
         likes = Likes(userLikes = true),
         reposts = Reposts(count = 1),
+        views = Views(0),
         postType = "copy",
-        canPin = false
+        postSource = PostSource("vk", "android", "profileActivity", "URL"),
+        attachments = arrayOf(AttachmentGift("Gift",Gift(1,"a","a","a"))),
+        geo = null,
+        signerId = null,
+        copyHistory = null,
+        canPin = false,
+        donut = null
     )
     val postUpdate = Post(
         id = 2,
-        ownerId = 2,
-        text = "22 июня самый длинный световой день",
+        ownerId = 1,
+        fromId = 1,
+        createdBy = 1,
+        date = 4325,
+        text = "23 июня самый длинный световой день",
+        replyOwnerId = 1,
         comments = Comments(canClose = false, canOpen = false),
+        copyright = Copyright(1, "www.kkk.ru", "name", "type"),
         likes = Likes(userLikes = true),
         reposts = Reposts(count = 1),
-        canPin = false
+        views = Views(0),
+        postType = "copy",
+        postSource = PostSource("vk", "android", "profileActivity", "URL"),
+        attachments = arrayOf(AttachmentGift("Gift",Gift(1,"a","a","a"))),
+        geo = null,
+        signerId = null,
+        copyHistory = null,
+        canPin = false,
+        donut = null
     )
     val service = WallService
     println(service.add(post))
     println(service.add(post2))
     println(service.update(postUpdate))
-    println(service.get(3))
+    println(service.get(1))
+    println(service.get(1).attachments?.get(0))
 }
-
-data class Post(
-    val id: Int = 0,
-    val ownerId: Int,
-    val text: String,
-    val friendsOnly: Boolean = false,
-    val comments: Comments,
-    val likes: Likes,
-    val reposts: Reposts,
-    val postType: String = "post",
-    val canPin: Boolean = true,
-    val canDelete: Boolean = true,
-    val canEdit: Boolean = true
-)
-
-data class Comments(
-    val count: Int = 0,
-    val canPost: Boolean = true,
-    val groupsCanPost: Boolean = true,
-    val canClose: Boolean = true,
-    val canOpen: Boolean = true
-)
-
-data class Likes(
-    val count: Int = 0,
-    val userLikes: Boolean,
-    val canLikes: Boolean = true,
-    val canPublish: Boolean = true
-)
-
-data class Reposts(val count: Int = 0, val userReposted: Boolean = false)
 
 object WallService {
     private var posts = emptyArray<Post>()
