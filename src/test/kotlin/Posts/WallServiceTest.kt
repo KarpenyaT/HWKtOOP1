@@ -1,3 +1,13 @@
+package Posts
+
+import Comment
+import Comments
+import Copyright
+import Likes
+import Post
+import PostSource
+import Reposts
+import Views
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
@@ -18,12 +28,12 @@ class WallServiceTest {
             text = "21 июня самый длинный световой день",
             replyOwnerId = 1,
             comments = Comments(canClose = false, canOpen = false),
-            copyright = Copyright(1,"www.kkk.ru","name","type"),
+            copyright = Copyright(1, "www.kkk.ru", "name", "type"),
             likes = Likes(userLikes = true),
             reposts = Reposts(count = 1),
             views = Views(0),
             postType = "copy",
-            postSource = PostSource("vk","android","profileActivity","URL"),
+            postSource = PostSource("vk", "android", "profileActivity", "URL"),
             geo = null,
             signerId = null,
             copyHistory = null,
@@ -32,7 +42,7 @@ class WallServiceTest {
         )
         val service = WallService
         service.add(post)
-        assertEquals(0, service.findById(0)?.id )
+        assertEquals(0, service.getById(0)?.id )
     }
 
     @Test
@@ -47,12 +57,12 @@ class WallServiceTest {
                 text = "21 июня самый длинный световой день",
                 replyOwnerId = 1,
                 comments = Comments(canClose = false, canOpen = false),
-                copyright = Copyright(1,"www.kkk.ru","name","type"),
+                copyright = Copyright(1, "www.kkk.ru", "name", "type"),
                 likes = Likes(userLikes = true),
                 reposts = Reposts(count = 1),
                 views = Views(0),
                 postType = "copy",
-                postSource = PostSource("vk","android","profileActivity","URL"),
+                postSource = PostSource("vk", "android", "profileActivity", "URL"),
                 geo = null,
                 signerId = null,
                 copyHistory = null,
@@ -69,12 +79,12 @@ class WallServiceTest {
                 text = "21 июня самый длинный световой день",
                 replyOwnerId = 1,
                 comments = Comments(canClose = false, canOpen = false),
-                copyright = Copyright(1,"www.kkk.ru","name","type"),
+                copyright = Copyright(1, "www.kkk.ru", "name", "type"),
                 likes = Likes(userLikes = true),
                 reposts = Reposts(count = 1),
                 views = Views(0),
                 postType = "copy",
-                postSource = PostSource("vk","android","profileActivity","URL"),
+                postSource = PostSource("vk", "android", "profileActivity", "URL"),
                 geo = null,
                 signerId = null,
                 copyHistory = null,
@@ -91,12 +101,12 @@ class WallServiceTest {
             text = "22 июня самый длинный световой день",
             replyOwnerId = 1,
             comments = Comments(canClose = false, canOpen = false),
-            copyright = Copyright(1,"www.kkk.ru","name","type"),
+            copyright = Copyright(1, "www.kkk.ru", "name", "type"),
             likes = Likes(userLikes = true),
             reposts = Reposts(count = 1),
             views = Views(0),
             postType = "copy",
-            postSource = PostSource("vk","android","profileActivity","URL"),
+            postSource = PostSource("vk", "android", "profileActivity", "URL"),
             geo = null,
             signerId = null,
             copyHistory = null,
@@ -104,7 +114,7 @@ class WallServiceTest {
             donut = null
         )
 
-        val result = service.update(postUpdate)
+        val result = service.edit(postUpdate)
         assertEquals(true, result)
     }
 
@@ -120,12 +130,12 @@ class WallServiceTest {
                 text = "21 июня самый длинный световой день",
                 replyOwnerId = 1,
                 comments = Comments(canClose = false, canOpen = false),
-                copyright = Copyright(1,"www.kkk.ru","name","type"),
+                copyright = Copyright(1, "www.kkk.ru", "name", "type"),
                 likes = Likes(userLikes = true),
                 reposts = Reposts(count = 1),
                 views = Views(0),
                 postType = "copy",
-                postSource = PostSource("vk","android","profileActivity","URL"),
+                postSource = PostSource("vk", "android", "profileActivity", "URL"),
                 geo = null,
                 signerId = null,
                 copyHistory = null,
@@ -142,12 +152,12 @@ class WallServiceTest {
                 text = "21 июня самый длинный световой день",
                 replyOwnerId = 1,
                 comments = Comments(canClose = false, canOpen = false),
-                copyright = Copyright(1,"www.kkk.ru","name","type"),
+                copyright = Copyright(1, "www.kkk.ru", "name", "type"),
                 likes = Likes(userLikes = true),
                 reposts = Reposts(count = 1),
                 views = Views(0),
                 postType = "copy",
-                postSource = PostSource("vk","android","profileActivity","URL"),
+                postSource = PostSource("vk", "android", "profileActivity", "URL"),
                 geo = null,
                 signerId = null,
                 copyHistory = null,
@@ -164,12 +174,12 @@ class WallServiceTest {
             text = "21 июня самый длинный световой день",
             replyOwnerId = 1,
             comments = Comments(canClose = false, canOpen = false),
-            copyright = Copyright(1,"www.kkk.ru","name","type"),
+            copyright = Copyright(1, "www.kkk.ru", "name", "type"),
             likes = Likes(userLikes = true),
             reposts = Reposts(count = 1),
             views = Views(0),
             postType = "copy",
-            postSource = PostSource("vk","android","profileActivity","URL"),
+            postSource = PostSource("vk", "android", "profileActivity", "URL"),
             geo = null,
             signerId = null,
             copyHistory = null,
@@ -177,7 +187,7 @@ class WallServiceTest {
             donut = null
         )
 
-        val result = service.update(postUpdate)
+        val result = service.edit(postUpdate)
         assertEquals(false, result)
     }
     @Test
@@ -192,12 +202,12 @@ class WallServiceTest {
                 text = "21 июня самый длинный световой день",
                 replyOwnerId = 1,
                 comments = Comments(canClose = false, canOpen = false),
-                copyright = Copyright(1,"www.kkk.ru","name","type"),
+                copyright = Copyright(1, "www.kkk.ru", "name", "type"),
                 likes = Likes(userLikes = true),
                 reposts = Reposts(count = 1),
                 views = Views(0),
                 postType = "copy",
-                postSource = PostSource("vk","android","profileActivity","URL"),
+                postSource = PostSource("vk", "android", "profileActivity", "URL"),
                 geo = null,
                 signerId = null,
                 copyHistory = null,
@@ -205,7 +215,7 @@ class WallServiceTest {
                 donut = null
             )
         )
-        val comment=Comment(1,1,"good")
+        val comment= Comment(1, 1, "good")
         val result = service.createComment(0,comment)
         assertEquals(comment, result)
     }
@@ -221,12 +231,12 @@ class WallServiceTest {
                 text = "21 июня самый длинный световой день",
                 replyOwnerId = 1,
                 comments = Comments(canClose = false, canOpen = false),
-                copyright = Copyright(1,"www.kkk.ru","name","type"),
+                copyright = Copyright(1, "www.kkk.ru", "name", "type"),
                 likes = Likes(userLikes = true),
                 reposts = Reposts(count = 1),
                 views = Views(0),
                 postType = "copy",
-                postSource = PostSource("vk","android","profileActivity","URL"),
+                postSource = PostSource("vk", "android", "profileActivity", "URL"),
                 geo = null,
                 signerId = null,
                 copyHistory = null,
@@ -234,7 +244,7 @@ class WallServiceTest {
                 donut = null
             )
         )
-        val comment=Comment(1,1,"good")
+        val comment= Comment(1, 1, "good")
         println(service.createComment(1,comment))
     }
 }

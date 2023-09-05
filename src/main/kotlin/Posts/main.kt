@@ -1,3 +1,16 @@
+package Posts
+
+import Comment
+import Comments
+import Copyright
+import CrudService
+import Likes
+import Post
+import PostSource
+import Reposts
+import Views
+
+
 fun main() {
     val post = Post(
         ownerId = 1,
@@ -80,28 +93,25 @@ fun main() {
         canPin = false,
         donut = null
     )
-    val comment=Comment(1,2,"good")
+    val comment= Comment(1, 2, "good")
     val service = WallService
-    println(service.add(post))
-    println(service.add(post2))
-    println(service.update(postUpdate))
-    println(service.findById(1))
-    println(service.findById(1)?.attachments?.get(0))
-    service.createComment(1,comment)
-    println(service.findById(1)?.comments)
+    println(WallService.add(post))
+    println(WallService.add(post2))
+    println(WallService.edit(postUpdate))
+    println(WallService.getById(1))
+    println(WallService.getById(1)?.attachments?.get(0))
+    WallService.createComment(1, comment)
+    println(WallService.getById(1)?.comments)
 }
 
-class PostNotFoundException(messege: String) : RuntimeException(messege)
-object WallService {
+class PostNotFoundException(message: String) : RuntimeException(message)
+object WallService : CrudService<Post> {
     private var posts = emptyArray<Post>()
     private var lastId: Int = 0
     private var comments = emptyArray<Comment>()
-    fun clear() {
-        posts = emptyArray()
-        lastId = 0
-    }
 
-    fun add(post: Post): Post {
+
+    override fun add(post: Post): Post {
         posts += post.copy(
             id = lastId++,
             comments = post.comments?.copy(),
@@ -116,7 +126,7 @@ object WallService {
         return posts.last()
     }
 
-    fun update(post: Post): Boolean {
+    override fun edit(post: Post): Boolean {
         for ((index, postArr) in posts.withIndex()) {
             if (postArr.id == post.id) {
                 posts[index] = post.copy(
@@ -136,7 +146,15 @@ object WallService {
         return false
     }
 
-    fun findById(id: Int): Post? {
+    override fun delete(id: Int):Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun read(): List<Post> {
+        TODO("Not yet implemented")
+    }
+
+   override fun getById(id: Int): Post? {
         for (post in posts) {
             if (post.id == id) {
                 return post
@@ -145,13 +163,21 @@ object WallService {
         return null
     }
 
+    override fun restore(id: Int):Boolean {
+        TODO("Not yet implemented")
+    }
+
     fun createComment(postId: Int, comment: Comment): Comment {
-        if (findById(postId)!=null) {
+        if (getById(postId) != null) {
             comments += comment.copy()
             return comments.last()
-        }else{
+        } else {
             throw PostNotFoundException("No post with $postId")
         }
     }
-
+    fun clear() {
+        posts = emptyArray()
+        comments= emptyArray()
+        lastId = 0
+    }
 }

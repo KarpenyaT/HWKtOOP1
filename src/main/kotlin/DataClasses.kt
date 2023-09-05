@@ -1,15 +1,25 @@
+import Posts.Attachment
 import java.util.*
 
+
+interface CrudElement {
+    val id: Int
+    val ownerId: Int
+    val date: Int
+    val text: String
+    //val comments<T>
+}
+
 data class Post(
-    var id: Int = 0,
-    val ownerId: Int,
+    override val id: Int=0,
+    override val ownerId: Int,
+    override val date: Int,
+    override val text: String,
+    val comments: Comments?,
     val fromId: Int,
     val createdBy: Int,
-    val date: Int,
-    val text: String,
     val replyOwnerId: Int,
     val friendsOnly: Boolean = false,
-    val comments: Comments?,
     val copyright: Copyright,
     val likes: Likes,
     val reposts: Reposts,
@@ -28,7 +38,32 @@ data class Post(
     val isFavorite: Boolean = false,
     val donut: Donut?,
     val postponedId: Boolean = false
+) : CrudElement
+
+data class Note(
+    override val id: Int=0,
+    override val ownerId: Int,
+    override val date: Int,
+    override val text: String,
+    val title:String,
+    val privacy:Int,
+    val commentPrivacy: Int,
+    val privacyView:String,
+    val privacyComment:String,
+    var flagDelete:Boolean=false,
+    var comments:List<CommentNote> = mutableListOf()
+) : CrudElement
+
+data class CommentNote(
+    val noteId:Int,
+    val commentId:Int=0,
+    val ownerId:Int,
+    var message: String,
+    var flagDelete:Boolean=false,
+    val date:Int
 )
+
+
 
 data class Comments(
     val count: Int = 0,

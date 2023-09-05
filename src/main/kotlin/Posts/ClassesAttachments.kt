@@ -1,4 +1,6 @@
-data class AttachmentPhoto(val photo: Photo) : Attachment{
+package Posts
+
+data class AttachmentPhoto(val photo: Photo) : Attachment {
     override val type="photo"
     override fun toString(): String {
         return "$type with $photo"
@@ -13,7 +15,7 @@ data class Photo(
     val date: Int
 )
 
-data class AttachmentAudio(val audio: Audio) : Attachment{
+data class AttachmentAudio(val audio: Audio) : Attachment {
     override val type: String="audio"
 }
 data class Audio(
@@ -31,7 +33,7 @@ data class Audio(
     val isHd: Boolean?
 )
 
-class AttachmentVideo(val video:Video):Attachment{
+class AttachmentVideo(val video: Video): Attachment {
     override val type: String="video"
 }
 data class Video(
@@ -72,7 +74,7 @@ data class Video(
 data class Image(val height: Int, val url: String, val width: Int, val withPadding: Int?)
 data class FirstFrame(val height: Int,val url: String,val width: Int)
 
-class AttachmentFile(val file:File):Attachment{
+class AttachmentFile(val file: File): Attachment {
     override val type: String="file"
 }
 data class File(
@@ -87,7 +89,7 @@ data class File(
 
 )
 
-class AttachmentGift(val gift: Gift):Attachment{
+class AttachmentGift(val gift: Gift): Attachment {
     override val type: String="gift"
 }
 data class Gift(
