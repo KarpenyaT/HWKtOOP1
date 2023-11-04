@@ -53,11 +53,11 @@ object WallServiceChat {
     }
 
     fun getUnreadChatsCount(): Int {
-        return chats.count { it.messages.count { it -> !it.readStatus } > 0 }
+        return chats.count { it.messages.count { !it.readStatus } > 0 }
     }
 
     fun clear() {
-        WallServiceChat.chats = mutableListOf()
+        chats = mutableListOf()
     }
 }
 
