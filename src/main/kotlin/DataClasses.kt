@@ -131,3 +131,14 @@ data class Donut(
     val canPublishFreeCopy: Boolean = false,
     val editMode: String = "all"// all, duration
 )
+
+data class Chat(
+    val idInterlocutor: Int,
+    val numberOfMessages: Int=0,
+    val messages:MutableList<Message> = mutableListOf()
+)
+data class Message(
+    val id:Int=0,
+    val text:String,
+    var readStatus:Boolean=false
+)
