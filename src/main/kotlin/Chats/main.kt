@@ -9,6 +9,7 @@ fun main() {
     service.addMessage(1, Message(text = "jjj"))
     //println(service.getChatById(1))
     service.addMessage(2, Message(text = "kkk"))
+    service.addMessage(1, Message(text = "kkk"))
     //println(service.getChatById(1))
     service.deleteMessage(1,0)
     //println(service.getMessagesFromChat(1, 1))
@@ -58,11 +59,11 @@ object WallServiceChat {
         return chats.count { it.messages.count { !it.readStatus } > 0 }
     }
     fun lastMessageFromChats(): List<String> {
-        val listMessages= mutableListOf<String>()
-        for(chat in chats){
-            listMessages += if (chat.messages.isEmpty()) "нет сообщений" else chat.messages.last().text
-        }
-        return listMessages
+//        val listMessages= mutableListOf<String>()
+//        for(chat in chats){
+//            listMessages += if (chat.messages.isEmpty()) "нет сообщений" else chat.messages.last().text
+//        }
+        return chats.map { it.messages.lastOrNull()?.text?:"Нет сообщений" }
 
     }
 

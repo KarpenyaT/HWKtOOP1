@@ -57,11 +57,12 @@ class WallServiceChatTest {
         assertEquals(null, result )
     }
     @Test
-    fun deleteLastMessageInChat() {
+    fun lastMessageFromChats() {
         service.addMessage(1,Message(text = "lll"))
-        service.deleteMessage(1,0)
-        val result=service.getChatById(1)
-        assertEquals(null, result )
+        service.addMessage(2,Message(text = "lll1"))
+        service.addMessage(1,Message(text = "lll2"))
+        val result=service.lastMessageFromChats().count()
+        assertEquals(2, result )
     }
     @Test
     fun deleteChat() {
