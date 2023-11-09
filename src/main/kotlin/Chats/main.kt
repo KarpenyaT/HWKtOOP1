@@ -7,13 +7,14 @@ import Message
 fun main() {
     val service = WallServiceChat
     service.addMessage(1, Message(text = "jjj"))
-    println(service.getChatById(1))
-    service.addMessage(1, Message(text = "kkk"))
-    println(service.getChatById(1))
-    //service.deleteMessage(1,1)
-    println(service.getMessagesFromChat(1, 1))
+    //println(service.getChatById(1))
+    service.addMessage(2, Message(text = "kkk"))
+    //println(service.getChatById(1))
+    service.deleteMessage(1,0)
+    //println(service.getMessagesFromChat(1, 1))
     println(service.getUnreadChatsCount())
-    service.getChats()
+    //println(service.getChats())
+    println(service.lastMessageFromChats())
 //    println( service.deleteChat(0))
 //    println(service.getChats())
 }
@@ -28,8 +29,8 @@ object WallServiceChat {
         return chats.remove(getChatById(idInterlocutor))
     }
 
-    fun getChats() {
-        chats.forEach { println(it) }
+    fun getChats():List<Chat> {
+        return chats
     }
 
     fun getChatById(idInterlocutor: Int): Chat? {
@@ -37,23 +38,32 @@ object WallServiceChat {
     }
 
     fun getMessagesFromChat(idInterlocutor: Int, countMessages: Int): List<Message>? {
-        getChatById(idInterlocutor)?.messages?.filter { it.id < countMessages }?.forEach { it.readStatus = true }
-        return getChatById(idInterlocutor)?.messages?.filter { it.id < countMessages }
+        getChatById(idInterlocutor)?.messages?.takeLast(countMessages)?.forEach { it.readStatus = true }
+        return getChatById(idInterlocutor)?.messages?.takeLast(countMessages)
     }
 
     fun addMessage(idInterlocutor: Int, message: Message) {
         if (getChatById(idInterlocutor) == null) addChat(Chat(idInterlocutor))
         val indexChat = chats.indexOf(getChatById(idInterlocutor))
-        chats[indexChat].messages += message.copy(id = chats[indexChat].messages.size)
+        var lastIdMessages=if (chats[indexChat].messages.isEmpty()) -1 else chats[indexChat].messages.last().id
+        chats[indexChat].messages += message.copy(id =++lastIdMessages)
     }
 
     fun deleteMessage(idInterlocutor: Int, idMessage: Int) {
         getChatById(idInterlocutor)?.messages?.removeIf { message: Message -> message.id == idMessage }
-        if (getChatById(idInterlocutor)?.messages?.isEmpty() == true) deleteChat(idInterlocutor)
+        //if (getChatById(idInterlocutor)?.messages?.isEmpty() == true) deleteChat(idInterlocutor)
     }
 
     fun getUnreadChatsCount(): Int {
         return chats.count { it.messages.count { !it.readStatus } > 0 }
+    }
+    fun lastMessageFromChats(): List<String> {
+        val listMessages= mutableListOf<String>()
+        for(chat in chats){
+            listMessages += if (chat.messages.isEmpty()) "нет сообщений" else chat.messages.last().text
+        }
+        return listMessages
+
     }
 
     fun clear() {
